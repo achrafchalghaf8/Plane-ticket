@@ -1,0 +1,46 @@
+<header class="header" [class.sidebar-collapsed]="isSidebarCollapsed">
+  <div class="header-left">
+    <button class="header-icon-btn menu-toggle" (click)="toggleSidebar()">
+      <i class="fas" [ngClass]="isSidebarCollapsed ? 'fa-bars' : 'fa-times'"></i>
+    </button>
+    <h1 class="header-title">Welcome, {{ adminName }}</h1>
+  </div>
+  <div class="header-center" [class.hidden]="isMobile">
+    <div class="search-container">
+      <i class="fas fa-search search-icon"></i>
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search..."
+        [(ngModel)]="searchQuery"
+        (keyup.enter)="search()"
+      >
+      <button class="search-clear" *ngIf="searchQuery" (click)="clearSearch()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+  <div class="header-right">
+    
+    <button class="header-icon-btn" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile search bar that appears when search icon is clicked -->
+<div class="mobile-search" *ngIf="isMobile && showMobileSearch">
+  <div class="search-container">
+    <i class="fas fa-search search-icon"></i>
+    <input
+      type="text"
+      class="search-input"
+      placeholder="Search..."
+      [(ngModel)]="searchQuery"
+      (keyup.enter)="search()"
+    >
+    <button class="search-clear" (click)="closeMobileSearch()">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+</div>
